@@ -1,0 +1,4 @@
+-------------------------------------------------------------------------------
+Test set: com.example.CVBuilder.CvBuilderApplicationTests
+-------------------------------------------------------------------------------
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 13.431 s - in com.example.CVBuilder.CvBuilderApplicationTests
