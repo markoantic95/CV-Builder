@@ -40,7 +40,7 @@ public class CvRestController {
             return service.createACV(cv);
         } catch (Exception ex) {
             System.out.println(ex.getMessage());
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Greska.");
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Greska.");
 
         }
     }

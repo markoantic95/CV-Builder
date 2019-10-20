@@ -8,6 +8,7 @@ package com.example.CVBuilder.service;
 import com.example.CVBuilder.dao.UserRepository;
 import com.example.CVBuilder.dto.UserDTO;
 import com.example.CVBuilder.entities.User;
+import com.example.CVBuilder.exceptions.UserNotFoundException;
 import com.example.CVBuilder.mapper.GenericMapper;
 import java.util.ArrayList;
 import java.util.List;
@@ -39,16 +40,17 @@ public class UserService {
         return mapper.userToUserDTO(repository.vratiPoIDu(id));
     }
     
-    public Object login(UserDTO user) throws Exception {
+    public Object login(UserDTO user){
         User userDB = repository.login(user.getUsername(), user.getPassword());
-        if (userDB == null) {
-            throw new Exception("Unknown user.");
-        }
-        return userDB;
+        return mapper.userToUserDTO(userDB);
     }
     
     public UserDTO register(UserDTO user) {
         User kor = mapper.userDTOToUser(user);
         return mapper.userToUserDTO(repository.save(kor));
+    }
+    
+    public Boolean existsByUsername(UserDTO user){
+        return repository.existsByUsername(user.getUsername());
     }
 }

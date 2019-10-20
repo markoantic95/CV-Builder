@@ -7,6 +7,8 @@ package com.example.CVBuilder.controller.rest;
 
 import com.example.CVBuilder.dto.UserDTO;
 import com.example.CVBuilder.entities.User;
+import com.example.CVBuilder.exceptions.UserNotFoundException;
+import com.example.CVBuilder.exceptions.UserAlreadyExistsException;
 import com.example.CVBuilder.service.UserService;
 import java.sql.SQLIntegrityConstraintViolationException;
 import java.util.List;
@@ -31,6 +33,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @CrossOrigin
 public class UserRestController {
+
     @Autowired
     UserService service;
 
@@ -45,34 +48,26 @@ public class UserRestController {
     UserDTO vratiUsera(@PathVariable Long id) {
         return service.findById(id);
     }
-    
 
     @CrossOrigin
     @RequestMapping(value = "/login", method = RequestMethod.POST)
     public @ResponseBody
-    Object login(@RequestBody UserDTO user) {
-        try {
-            return ResponseEntity.status(HttpStatus.OK).body(service.login(user));
-        }catch (SQLIntegrityConstraintViolationException  e) {
-            //uhvati duplicate entry for key exception
-            System.out.println("User already exist");
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("User already existper");
-            
+    Object login(@RequestBody UserDTO user) throws UserNotFoundException {
+        UserDTO userLogin = (UserDTO) service.login(user);
+        if (userLogin != null) {
+            return ResponseEntity.status(HttpStatus.OK).body(userLogin);
         }
-        catch (Exception ex) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Greska. Ne postoji takav korisnik.");
+        throw new UserNotFoundException("User not found");
 
-        }
     }
+
     @CrossOrigin
     @RequestMapping(value = "/register", method = RequestMethod.POST)
     public @ResponseBody
     Object register(@RequestBody UserDTO user) {
-        try {
+        if (!service.existsByUsername(user)) {
             return service.register(user);
-        } catch (Exception ex) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Greska. Ne postoji takav korisnik.");
-
         }
+        throw new UserAlreadyExistsException("Username is already taken.");
     }
 }

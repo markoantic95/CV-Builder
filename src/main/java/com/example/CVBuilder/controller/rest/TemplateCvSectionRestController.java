@@ -49,7 +49,7 @@ public class TemplateCvSectionRestController {
         try {
             return service.saveTemplateWithSections(templateSection);
         } catch (Exception ex) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Greska. Ne postoji takav korisnik.");
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Greska.");
 
         }
     }
@@ -71,7 +71,7 @@ public class TemplateCvSectionRestController {
         if(success==true){
             return ResponseEntity.status(HttpStatus.OK).body(tempSecList);
         }
-        return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Greska. Ne postoji takav korisnik.");
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Greska.");
     }
 
 
@@ -83,7 +83,7 @@ public class TemplateCvSectionRestController {
         try {
             return service.updateTemplateWithSections(templateSection);
         } catch (Exception ex) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Greska. Ne postoji takav korisnik.");
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Greska.");
 
         }
     }

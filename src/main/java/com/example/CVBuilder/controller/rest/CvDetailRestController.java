@@ -33,7 +33,7 @@ public class CvDetailRestController {
 
     @Autowired
     CvDetailService service;
-
+    
     @CrossOrigin
     @RequestMapping(value = "/saveCVDetail", method = RequestMethod.POST, consumes = "application/json", produces = "application/json")
     public @ResponseBody
@@ -50,7 +50,7 @@ public class CvDetailRestController {
         if (success == true) {
             return ResponseEntity.status(HttpStatus.OK).body(cvDetailList);
         }
-        return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Greska. Ne postoji takav korisnik.");
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Greska.");
 
     }
 
