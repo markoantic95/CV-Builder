@@ -9,7 +9,6 @@ import com.example.CVBuilder.dto.TemplateSectionParamDTO;
 import com.example.CVBuilder.service.TemplateSectionParamService;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -19,7 +18,6 @@ import org.springframework.web.bind.annotation.RestController;
  * @author Marko
  */
 @RestController
-@CrossOrigin
 public class TemplateSectionParamRestController {
 
     @Autowired

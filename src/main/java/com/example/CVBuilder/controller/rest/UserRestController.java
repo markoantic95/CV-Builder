@@ -6,23 +6,18 @@
 package com.example.CVBuilder.controller.rest;
 
 import com.example.CVBuilder.dto.UserDTO;
-import com.example.CVBuilder.entities.User;
 import com.example.CVBuilder.exceptions.UserNotFoundException;
 import com.example.CVBuilder.exceptions.UserAlreadyExistsException;
 import com.example.CVBuilder.service.UserService;
-import java.sql.SQLIntegrityConstraintViolationException;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -31,7 +26,6 @@ import org.springframework.web.bind.annotation.RestController;
  * @author Marko
  */
 @RestController
-@CrossOrigin
 public class UserRestController {
 
     @Autowired
@@ -49,7 +43,6 @@ public class UserRestController {
         return service.findById(id);
     }
 
-    @CrossOrigin
     @RequestMapping(value = "/login", method = RequestMethod.POST)
     public @ResponseBody
     Object login(@RequestBody UserDTO user) throws UserNotFoundException {
@@ -58,10 +51,8 @@ public class UserRestController {
             return ResponseEntity.status(HttpStatus.OK).body(userLogin);
         }
         throw new UserNotFoundException("User not found");
-
     }
 
-    @CrossOrigin
     @RequestMapping(value = "/register", method = RequestMethod.POST)
     public @ResponseBody
     Object register(@RequestBody UserDTO user) {

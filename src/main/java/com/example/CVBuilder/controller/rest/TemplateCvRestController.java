@@ -6,16 +6,11 @@
 package com.example.CVBuilder.controller.rest;
 
 import com.example.CVBuilder.dto.TemplateCvDTO;
-import com.example.CVBuilder.dto.TemplateParamDTO;
-import com.example.CVBuilder.dto.UserDTO;
-import com.example.CVBuilder.entities.TemplateCv;
 import com.example.CVBuilder.service.TemplateCvService;
-import java.math.BigInteger;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -30,12 +25,10 @@ import org.springframework.web.bind.annotation.RestController;
  */
 
 @RestController
-@CrossOrigin
 public class TemplateCvRestController {
     @Autowired
     TemplateCvService service;
     
-    @CrossOrigin
     @RequestMapping(value = "/createATemplate", method = RequestMethod.POST)
     public @ResponseBody
     Object createATemplate(@RequestBody TemplateCvDTO templateCv) {
@@ -44,11 +37,9 @@ public class TemplateCvRestController {
         } catch (Exception ex) {
             System.out.println(ex.getMessage());
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Greska.");
-
         }
     }
     
-    @CrossOrigin
     @RequestMapping(value = "/updateTemplate", method = RequestMethod.PUT)
     public @ResponseBody
     Object updateTemplate(@RequestBody TemplateCvDTO templateCv) {
@@ -57,7 +48,6 @@ public class TemplateCvRestController {
         } catch (Exception ex) {
             System.out.println(ex.getMessage());
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Greska.");
-
         }
     }
     
@@ -66,7 +56,6 @@ public class TemplateCvRestController {
     List<TemplateCvDTO> returnAllTemplates() {
         return service.findAll();
     }
-    @CrossOrigin
     @RequestMapping(value = "deleteTemplate", method = RequestMethod.DELETE)
     public void deleteTemplate(@RequestParam Long tempID) {
         service.deleteTemplate(tempID);

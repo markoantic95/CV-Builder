@@ -5,61 +5,18 @@
  */
 package com.example.CVBuilder.service;
 
-import com.example.CVBuilder.dao.TemplateCvRepository;
 import com.example.CVBuilder.dto.TemplateCvDTO;
-import com.example.CVBuilder.dto.TemplateParamDTO;
-import com.example.CVBuilder.dto.UserDTO;
-import com.example.CVBuilder.entities.TemplateCv;
-import com.example.CVBuilder.entities.TemplateParam;
-import com.example.CVBuilder.entities.User;
-import com.example.CVBuilder.mapper.GenericMapper;
-import java.math.BigInteger;
-import java.util.ArrayList;
 import java.util.List;
-import javax.transaction.Transactional;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 
 /**
  *
  * @author Marko
  */
-@Service
-public class TemplateCvService {
+public interface TemplateCvService {
     
-    @Autowired
-    GenericMapper mapper;
-    @Autowired
-    private TemplateCvRepository repository;
-    
-    public TemplateCvDTO createATemplate(TemplateCvDTO templateCv) {
-        TemplateCv tempCv = mapper.templateCvDTOToTemplateCv(templateCv);
-        return mapper.templateCvToTemplateCvDTO(repository.save(tempCv));
-    }
-    
-    public TemplateCvDTO updateTemplate(TemplateCvDTO templateCv) {
-        TemplateCv tempCv = mapper.templateCvDTOToTemplateCv(templateCv);
-        return mapper.templateCvToTemplateCvDTO(repository.save(tempCv));
-    }
-    public List<TemplateCvDTO> findAll() {
-        List<TemplateCv> users = repository.findAll();
-        List<TemplateCvDTO> usersDTO = new ArrayList<>();
-        for (TemplateCv user : users) {
-            usersDTO.add(mapper.templateCvToTemplateCvDTO(user));
-        }
-        return usersDTO;
-    }
-    
-    public void deleteTemplate(Long tempID) {
-        repository.deleteById(tempID);
-    }
-    
-     public List<TemplateCvDTO> returnTemplatesForUser(Long userID) {
-        List<TemplateCv> templatesList = repository.returnTemplatesForUser(userID);
-        List<TemplateCvDTO> templatesDTO = new ArrayList<>();
-        for (TemplateCv t : templatesList) {
-            templatesDTO.add(mapper.templateCvToTemplateCvDTO(t));
-        }
-        return templatesDTO;
-    }
+    public TemplateCvDTO createATemplate(TemplateCvDTO templateCv);
+    public TemplateCvDTO updateTemplate(TemplateCvDTO templateCv);
+    public List<TemplateCvDTO> findAll();
+    public void deleteTemplate(Long tempID);
+    public List<TemplateCvDTO> returnTemplatesForUser(Long userID);
 }

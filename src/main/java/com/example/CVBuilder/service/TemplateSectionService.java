@@ -5,33 +5,14 @@
  */
 package com.example.CVBuilder.service;
 
-import com.example.CVBuilder.dao.TemplateSectionRepository;
 import com.example.CVBuilder.dto.TemplateSectionDTO;
-import com.example.CVBuilder.entities.TemplateSection;
-import com.example.CVBuilder.mapper.GenericMapper;
-import java.util.ArrayList;
 import java.util.List;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 
 /**
  *
  * @author Marko
  */
-
-@Service
-public class TemplateSectionService {
-    @Autowired
-    GenericMapper mapper;
-    @Autowired
-    private TemplateSectionRepository repository;
+public interface TemplateSectionService {
     
-    public List<TemplateSectionDTO> returnAllSections() {
-        List<TemplateSection> tempSections = repository.findAll();
-        List<TemplateSectionDTO> tempSectionsDTO = new ArrayList<>();
-        for (TemplateSection tempSection : tempSections) {
-            tempSectionsDTO.add(mapper.templateSectionToTemplateSectionDTO(tempSection));
-        }
-        return tempSectionsDTO;
-    }
+    public List<TemplateSectionDTO> returnAllSections();
 }

@@ -5,45 +5,14 @@
  */
 package com.example.CVBuilder.service;
 
-import com.example.CVBuilder.dao.TemplateSectionParamRepository;
-import com.example.CVBuilder.dto.TemplateCvSectionDTO;
 import com.example.CVBuilder.dto.TemplateSectionParamDTO;
-import com.example.CVBuilder.entities.TemplateCvSection;
-import com.example.CVBuilder.entities.TemplateSectionParam;
-import com.example.CVBuilder.mapper.GenericMapper;
-import java.util.ArrayList;
 import java.util.List;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 
 /**
  *
  * @author Marko
  */
-
-@Service
-public class TemplateSectionParamService {
-    @Autowired
-    GenericMapper mapper;
-    @Autowired
-    private TemplateSectionParamRepository repository;
+public interface TemplateSectionParamService {
     
-    public List<TemplateSectionParamDTO> findAll() {
-        List<TemplateSectionParam> tempSectionParams = repository.findAll();
-        List<TemplateSectionParamDTO> tempSectionParamsDTO = new ArrayList<>();
-        for (TemplateSectionParam tempSectionParam : tempSectionParams) {
-            tempSectionParamsDTO.add(mapper.templateSectionParamToTemplateSectionParamDTO(tempSectionParam));
-        }
-        return tempSectionParamsDTO;
-    }
-    
-//    public List<TemplateSectionParamDTO> findAll() {
-//        List<TemplateSectionParam> tempSections = repository.findAll();
-//        List<TemplateSectionParamDTO> tempSectionsDTO = new ArrayList<>();
-//        for (TemplateSectionParam tempSection : tempSections) {
-//            tempSectionsDTO.add(mapper.templateSectionParamToTemplateSectionParamDTO(tempSection));
-//        }
-//        return tempSectionsDTO;
-//    }
-    
+    public List<TemplateSectionParamDTO> findAll();
 }

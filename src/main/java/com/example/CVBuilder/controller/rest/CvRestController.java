@@ -6,14 +6,11 @@
 package com.example.CVBuilder.controller.rest;
 
 import com.example.CVBuilder.dto.CvDTO;
-import com.example.CVBuilder.dto.TemplateCvDTO;
 import com.example.CVBuilder.service.CvService;
-import com.example.CVBuilder.service.TemplateCvService;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -27,12 +24,10 @@ import org.springframework.web.bind.annotation.RestController;
  * @author Marko
  */
 @RestController
-@CrossOrigin
 public class CvRestController {
     @Autowired
     CvService service;
     
-    @CrossOrigin
     @RequestMapping(value = "/createACV", method = RequestMethod.POST)
     public @ResponseBody
     Object createACV(@RequestBody CvDTO cv) {
@@ -53,7 +48,6 @@ public class CvRestController {
 
     }
     
-    @CrossOrigin
     @RequestMapping(value = "deleteCV", method = RequestMethod.DELETE)
     public void deleteCV(@RequestParam Long cvID) {
         service.deleteCV(cvID);
