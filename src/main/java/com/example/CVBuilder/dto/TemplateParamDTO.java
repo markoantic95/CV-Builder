@@ -5,12 +5,6 @@
  */
 package com.example.CVBuilder.dto;
 
-import com.example.CVBuilder.entities.TemplateSectionParam;
-import java.util.Collection;
-import javax.persistence.Column;
-import javax.persistence.OneToMany;
-import javax.validation.constraints.Size;
-
 /**
  *
  * @author Marko

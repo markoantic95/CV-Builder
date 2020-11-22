@@ -5,8 +5,6 @@
  */
 package com.example.CVBuilder.dto;
 
-
-
 /**
  *
  * @author Marko

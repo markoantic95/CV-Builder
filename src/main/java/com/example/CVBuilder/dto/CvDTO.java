@@ -5,19 +5,7 @@
  */
 package com.example.CVBuilder.dto;
 
-import com.example.CVBuilder.entities.TemplateCv;
-import com.example.CVBuilder.entities.User;
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import java.util.Collection;
 import java.util.Date;
-import javax.persistence.Basic;
-import javax.persistence.Column;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
-import javax.validation.constraints.NotNull;
 
 /**
  *

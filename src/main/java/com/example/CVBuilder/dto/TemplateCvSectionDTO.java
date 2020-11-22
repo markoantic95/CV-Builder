@@ -5,10 +5,6 @@
  */
 package com.example.CVBuilder.dto;
 
-import javax.persistence.Column;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-
 /**
  *
  * @author Marko

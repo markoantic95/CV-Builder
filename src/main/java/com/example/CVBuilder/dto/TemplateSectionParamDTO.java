@@ -5,12 +5,6 @@
  */
 package com.example.CVBuilder.dto;
 
-import com.example.CVBuilder.entities.TemplateParam;
-import com.example.CVBuilder.entities.TemplateSection;
-import javax.persistence.Column;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-
 /**
  *
  * @author Marko
